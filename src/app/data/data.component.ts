@@ -9,7 +9,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./data.component.css'],
 })
 export class DataComponent implements OnInit {
-  accessToken: string;
+  access_token: string;
+  date_created: number;
+  user_id: string;
+  scope: any
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -19,26 +22,29 @@ export class DataComponent implements OnInit {
     let urlTree: UrlTree = urlSerializer.parse(url);
     let queryParams = urlTree.queryParams;
 
-    let access_token = queryParams['access_token'];
-    this.accessToken = access_token;
-    let user_id = queryParams['user_id'];
-    let date_created = Date.now();
-    console.log('data is', access_token, user_id, date_created);
+    this.access_token = queryParams['access_token'];
+    this.user_id = queryParams['user_id'];
+    this.date_created = Date.now();
+    this.scope = queryParams['scope']
+    console.log('data is', this.access_token, this.user_id, this.date_created, this.scope);
 
     this.getData();
   }
 
   getData() {
-    let api_url = `https://api.fitbit.com/1/user/-/activities/heart/date/today/1d/1sec.json`;
+    const api_url = `https://api.fitbit.com/1/user/-/activities/heart/date/today/1d/1sec.json`;
+    const url =
+      'https://api.fitbit.com/1/user/-/activities/heart/date/today/1d/1sec.json';
+      //'https://api.fitbit.com/1/user/-/activities/heart/date/[date]/[end-date]/[detail-level].json';
 
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + this.accessToken,
+        Authorization: 'Bearer ' + this.access_token,
       }),
     };
     this.http.get(api_url, httpOptions).subscribe((data) => {
-      console.log(data);
+      console.log(data); // it worked
     });
   }
 }
