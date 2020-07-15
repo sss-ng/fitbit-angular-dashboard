@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "fitbit-firebase-app"
+    }
+  },
+  "defaultProject": "fitbit-firebase-app",
+  "cli": {
+    "analytics": "91b411c7-6d58-4b78-b0b9-d42d77b0dacd"
+  }
 }

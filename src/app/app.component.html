@@ -1,0 +1,14 @@
+<div style="width: 75%; margin: 0 auto;">
+  <h1>test header</h1>
+
+  <ul>
+    <li><a [routerLink]="['callback']"> link to callback</a></li>
+    <li><a [routerLink]="['../']"> link to home</a></li>
+    <li><a href="https://www.fitbit.com/oauth2/authorize"> link to authorize</a></li>
+    <li><a href="https://www.fitbit.com/oauth2/authorize?response_type=token&client_id=22BTSN&redirect_uri=http%3A%2F%2Flocalhost%3A4200%2Fcallback&scope=activity%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight&expires_in=604800"> link to authorize</a></li>
+    <li></li>
+  </ul>
+
+
+  <router-outlet></router-outlet>
+</div>
